@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends StateMachine
+
+#logical part
+func _state_logic(delta):   #virtual method
+	add_state(\"sleep\")
+	add_state(\"chase\")
+	add_state(\"attack\")
+	call_deferred(\"set_state\", states.sleep)
+
+func _get_transition(delta):  #handle the transitions
+	return null
+
+#entering and exiting states
+func _enter_state(new_state, old_state):  #what we are transitioing to
+	pass
+
+func _exit_state(old_state, new_state):  #what we are transitioning from
+	pass"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StateMachine" type="Node" parent="."]
+script = SubResource( 1 )
